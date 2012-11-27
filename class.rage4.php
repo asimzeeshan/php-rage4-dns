@@ -115,16 +115,66 @@ class rage4 {
         Create a new domain name (zone) in your Rage4.com account
         ------------------------------------------------------------
         Parameters: (all required)
-        $name (string) = domain name
+        $name (string)  = domain name
         $email (string) = regular email address of the domain / NOC manager
         
         */
     public function createDomain($domain_name, $email) {
         if (empty($domain_name) || empty($email)) {
-            $this->throwError("(method: createDomain) Domain name and Email address is required for 'CreateDomain' method");
+            $this->throwError("(method: createDomain) Domain name and Email address is required");
         }
         
         $response = $this->doQuery("createregulardomain/?name=$domain_name&email=$email");
+        $response = json_decode($response, true);
+        
+        if (isset($response['error']) && $response['error']!="") {
+            return $response['error'];
+        } else {
+            return $response;
+        }
+    }
+    
+    /*
+        CREATE A REVERSE IPv4 DOMAIN
+        Create a reverse IPv4 domain name (zone) in your Rage4.com account
+        ------------------------------------------------------------
+        Parameters: (all required)
+        $name (string)  = domain name (for reverse domains: ip6.arpa or in-addr.arpa)
+        $email (string) = owner's email
+        $subnet (int)   = valid subnet mask
+        
+        */
+    public function createReverseDomain4($domain_name, $email, $subnet) {
+        if (empty($domain_name) || empty($email) || empty($subnet)) {
+            $this->throwError("(method: createReverseDomain4) Domain name, Email address and subnet is required");
+        }
+        
+        $response = $this->doQuery("createreversedomain4/?name=$domain_name&email=$email&subnet=$subnet");
+        $response = json_decode($response, true);
+        
+        if (isset($response['error']) && $response['error']!="") {
+            return $response['error'];
+        } else {
+            return $response;
+        }
+    }
+    
+    /*
+        CREATE A REVERSE IPv6 DOMAIN
+        Create a reverse IPv6 domain name (zone) in your Rage4.com account
+        ------------------------------------------------------------
+        Parameters: (all required)
+        $name (string)  = domain name (for reverse domains: ip6.arpa or in-addr.arpa)
+        $email (string) = owner's email
+        $subnet (int)   = valid subnet mask
+        
+        */
+    public function createReverseDomain6($domain_name, $email, $subnet) {
+        if (empty($domain_name) || empty($email) || empty($subnet)) {
+            $this->throwError("(method: createReverseDomain6) Domain name, Email address and subnet is required");
+        }
+        
+        $response = $this->doQuery("createreversedomain6/?name=$domain_name&email=$email&subnet=$subnet");
         $response = json_decode($response, true);
         
         if (isset($response['error']) && $response['error']!="") {

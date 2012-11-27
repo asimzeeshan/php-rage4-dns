@@ -7,6 +7,8 @@ Number of API calls is not limited at the moment hence no mechanism added to tra
 The methods introduced in this first release are
 - getDomains()
 - createDomain()
+- createReverseDomain4()
+- createReverseDomain6()
 - deleteDomain()
 - importDomain()
 - getRecords()
@@ -40,6 +42,18 @@ Here are some examples on how to do basic things. Of course you need to configur
 
 	// createDomain($domain_name, $email)
 	$response = $r4->createDomain('my-domain-name-here.com', 'you@yourhost.com');
+	print_r($response);
+
+### Create Reverse IPv4 domain
+
+	// createReverseDomain4($domain_name, $email, $subnet)
+	$response = $r4->createReverseDomain4('155.39.97.in-addr.arpa', 'you@yourhost.com', '27');
+	print_r($response);
+
+### Create Reverse IPv6 domain
+
+	// createReverseDomain6($domain_name, $email, $subnet)
+	$response = $r4->createReverseDomain6('0.0.0.0.8.b.d.0.1.0.0.2.ip6.arpa', 'you@yourhost.com', '48');
 	print_r($response);
 
 ### Delete a new domain name (zone)
@@ -92,7 +106,7 @@ Note! There is no way to update the record-type at the moment, so the easy way i
     
 ## TODO / Wish List
 
-- Add support for creating "reverse IPv4 domain", "reverse IPv6 domain", IPv6 and rDNS
+- Return the errors instead of echo'ing them in-file
  
 ## Credits
 
