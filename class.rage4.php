@@ -289,9 +289,10 @@ class rage4 {
         $priority (int)             = priority of the record being created [OPTIONAL!!]
         $failover (bool)            = Failure support? Yes/No
         $failovercontent (string)   = Failure IP / content
+        $ttl (int)                  = TTL
         
         */
-    public function createRecord($domain_id, $name, $content, $type="TXT", $priority="", $failover="", $failovercontent="") {
+    public function createRecord($domain_id, $name, $content, $type="TXT", $priority="", $failover="", $failovercontent="", $ttl=3600) {
         // explicitly typecast into required types
         $domain_id          = (int)$domain_id;
         $name               = (string)$this->cleanInput($name);
@@ -300,7 +301,7 @@ class rage4 {
         $priority           = $this->cleanInput($priority);
         //$failover           = (bool)$this->cleanInput($failover);
         $failovercontent    = (string)$this->cleanInput($failovercontent);
-        
+        $ttl				= (int)$ttl;
         
         if (empty($domain_id)) {
             $this->throwError("(method: createRecord) Domain id must be a number");
@@ -333,7 +334,7 @@ class rage4 {
         if (!empty($priority)) {
             $priority = (int)$priority;
         }
-        $query_string .= "&priority=$priority&failover=$failover&failovercontent=$failovercontent";
+        $query_string .= "&priority=$priority&failover=$failover&failovercontent=$failovercontent&ttl=$ttl";
         
         $response = $this->doQuery("createrecord/$query_string");
         $response = json_decode($response, true);
@@ -358,9 +359,10 @@ class rage4 {
         $priority (int)             = priority of the record being created [OPTIONAL!!]
         $failover (bool)            = Failure support? Yes/No
         $failovercontent (string)   = Failure IP / content
+        $ttl (int)                  = TTL
         
         */
-    public function updateRecord($record_id, $name, $content, $priority="", $failover="", $failovercontent="") {
+    public function updateRecord($record_id, $name, $content, $priority="", $failover="", $failovercontent="", $ttl=3600) {
         // explicitly typecast into required types
         $record_id          = (int)$record_id;
         $name               = (string)$this->cleanInput($name);
@@ -368,6 +370,7 @@ class rage4 {
         $priority           = $this->cleanInput($priority);
         //$failover           = (bool)$this->cleanInput($failover);
         $failovercontent    = (string)$this->cleanInput($failovercontent);
+        $ttl				= (int)$ttl;
         
         
         if (empty($record_id)) {
@@ -395,7 +398,7 @@ class rage4 {
         if (!empty($priority)) {
             $priority = (int)$priority;
         }
-        $query_string .= "&priority=$priority&failover=$failover&failovercontent=$failovercontent";
+        $query_string .= "&priority=$priority&failover=$failover&failovercontent=$failovercontent&ttl=$ttl";
         
         $response = $this->doQuery("updaterecord/$query_string");
         $response = json_decode($response, true);
