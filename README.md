@@ -83,8 +83,8 @@ You need to mention the domain ID for which you need to get all records for. Aga
 
 ### Create a new record for a particular domain name (zone)
 
-	// createRecord($domain_id, $name, $content, $type="TXT", $priority="", $failover="", $failovercontent="")
-	$response = $r4->createRecord(55, 'my-domain-name-here.com', 'ns1.4dns.com', "NS");
+	// createRecord($domain_id, $name, $content, $type="TXT", $priority="", $failover="", $failovercontent="", $ttl=3600)
+	$response = $r4->createRecord(55, 'my-domain-name-here.com', 'ns1.4dns.com', "NS", 1500);
 	print_r($response);
 
 ### Update an existing record
@@ -94,8 +94,8 @@ You need to mention the domain ID for which you need to get all records for. Aga
 Note! No domain_name/domain_id is required while updating a record
 Note! There is no way to update the record-type at the moment, so the easy way is to delete the record first and then recreate with new values (if record-type is changed) e.g. from CNAME to TXT etc
 
-	// updateRecord($record_id, $name, $content, $priority="", $failover="", $failovercontent="")
-	$response = $r4->updateRecord(5555, 'my-domain-name-here.com', 'ns1.4dns.com');
+	// updateRecord($record_id, $name, $content, $priority="", $failover="", $failovercontent="", $ttl=3600)
+	$response = $r4->updateRecord(5555, 'my-domain-name-here.com', 'ns1.4dns.com', 1500);
 	print_r($response);
 
 ### Delete an existing record
