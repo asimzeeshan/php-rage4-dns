@@ -301,7 +301,7 @@ class rage4 {
         $priority           = $this->cleanInput($priority);
         //$failover           = (bool)$this->cleanInput($failover);
         $failovercontent    = (string)$this->cleanInput($failovercontent);
-        $ttl				= (int)$ttl;
+        $ttl                = (int)$ttl;
         
         if (empty($domain_id)) {
             $this->throwError("(method: createRecord) Domain id must be a number");
@@ -370,7 +370,7 @@ class rage4 {
         $priority           = $this->cleanInput($priority);
         //$failover           = (bool)$this->cleanInput($failover);
         $failovercontent    = (string)$this->cleanInput($failovercontent);
-        $ttl				= (int)$ttl;
+        $ttl                = (int)$ttl;
         
         
         if (empty($record_id)) {
