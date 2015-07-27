@@ -107,6 +107,10 @@ Note! There is no way to update the record-type at the moment, so the easy way i
 ## TODO / Wish List
 
 - Return the errors instead of echo'ing them in-file
+
+## Reporting Bugs? Feature request?
+
+- Please [click here](https://asimzeeshan.atlassian.net/secure/CreateIssue.jspa?pid=10000&issuetype=3) to report errors
  
 ## Credits
 
@@ -115,5 +119,6 @@ Note! There is no way to update the record-type at the moment, so the easy way i
 
 #### Special thanks to
 
-- Rage4.com for providing the free beta run and then the free service to me
+- Rage4.com for providing free services
+- Atlassian (JIRA) for providing a platform to maintain this and my other projects
 - GitHub for providing this amazing free service
